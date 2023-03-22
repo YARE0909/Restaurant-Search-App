@@ -8,7 +8,20 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Buisness Search">
+      <Stack.Navigator
+        initialRouteName="Buisness Search"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#000',
+          },
+          headerTitleAlign: 'center',
+          headerShadowVisible: false,
+          
+        }}>
         <Stack.Screen name="Buisness Search" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>

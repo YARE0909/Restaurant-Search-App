@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 const SearchBar = (props: any) => {
   return (
@@ -25,6 +24,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     flexDirection: 'row',
+    marginBottom: 10
   },
   text: {
     color: '#000',

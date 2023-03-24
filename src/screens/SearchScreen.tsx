@@ -7,21 +7,15 @@ import ResultsLists from '../components/ResultsLists';
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
   const [searchAPI, results, ermsg] = useResults();
-  
+
   const errMsg = (
     <Text style={{color: 'red', fontSize: 15}}>
       Something went wrong please try again
     </Text>
   );
 
-  const resultCount = (
-    <Text style={{color: 'black', fontSize: 15}}>
-      We have found {results.length} results
-    </Text>
-  );
-
   const filterResultsByPrice = (price: any) => {
-    return results.filter(result => {
+    return results.filter((result: any) => {
       return result['price'] === price;
     });
   };
@@ -36,13 +30,41 @@ const SearchScreen = () => {
         onTermSubmit={() => searchAPI(term)}
       />
       {ermsg ? errMsg : null}
-      {resultCount}
-      <ResultsLists
-        results={filterResultsByPrice('$')}
-        title="Cost Effective"
-      />
-      <ResultsLists results={filterResultsByPrice('$$')} title="Bit Pricey" />
-      <ResultsLists results={filterResultsByPrice('$$$')} title="Fancy Stuff" />
+      {results ? (
+        <View>
+          <ResultsLists
+            results={filterResultsByPrice('$')}
+            title="Cost Effective"
+          />
+          <ResultsLists
+            results={filterResultsByPrice('$$')}
+            title="Bit Pricey"
+          />
+          <ResultsLists
+            results={filterResultsByPrice('$$$')}
+            title="Fancy Stuff"
+          />
+        </View>
+      ) : (
+        <View
+          style={{
+            width: '100%',
+            height: '100%',
+            alignContent: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'white',
+          }}>
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: '700',
+              fontSize: 18,
+              alignSelf: 'center',
+            }}>
+            Loading...
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -53,6 +75,7 @@ const styles = StyleSheet.create({
     gap: 10,
     backgroundColor: '#fff',
     height: '100%',
+    flex: 1,
   },
   text: {
     color: '#000',
